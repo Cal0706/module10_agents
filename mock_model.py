@@ -1,5 +1,5 @@
 # mock_model.py
-# Author: [Your Name]
+# Author: Cam Lopez
 
 
 class MockModel:

@@ -2,7 +2,7 @@ HANDOFF_WORDS = ["address", "payment", "card"]
 
 
 class SupportChatbot:
-    def __init__(self, name, instructions, order_tool, stock_tool, model=None):
+    def __init__(self, name, instructions, order_tool, stock_tool, model):
         self.name = name
         self.instructions = instructions
         self.order_tool = order_tool
@@ -18,18 +18,17 @@ class SupportChatbot:
         return reply
 
     def choose_reply(self, user_message):
-        """Choose a reply with keyword rules. This is the mock part."""
+        """Use a rule when one applies. Otherwise ask the model."""
         text = user_message.lower()
         if self.needs_human(text):
-            return "I cannot help with that here. I am passing you off to my human pet."
+            return "I can't help with that here. I'm passing you to a human agent."
         if "order" in text:
             return self.order_reply(user_message)
         if "stock" in text:
             return self.stock_reply(user_message)
-        if "hello" in text and self.model is None:
-            return f"Hello! I am {self.name}. I can check an order status for you."
         
         return self.model_reply()
+        
     
     def needs_human(self, text):
         """Return True if the messsage is about something a person must handle."""
@@ -63,14 +62,10 @@ class SupportChatbot:
         return f"We have {count} of the {product} in stock."
 
     def model_reply(self):
-        """Ask the model for a reply, with a safe fallback."""
-        if self.model is None:
-            return "Sorry, I can't answer that right now. Please try again."
-        
+        """Ask the model for a reply. Give a safe answer if the model has none."""
         reply = self.model.reply(self.instructions, self.history)
-        
         if reply is None:
-            return "Sorry, I can't answer that right now. Please try again."
-            
+            return "Sorry, I can't answer that right now. Please try again in a moment."
         return reply
+    
     
