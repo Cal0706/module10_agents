@@ -37,12 +37,12 @@ class AppointmentHelper:
         """Ask the model for a reply, with a safe fallback."""
         if self.model is None:
             return "Sorry, I can't answer that right now. Please try again."
-        
+
         reply = self.model.reply(self.instructions, self.history)
-        
+
         if reply is None:
             return "Sorry, I can't answer that right now. Please try again."
-        
+
         return reply
 
     def needs_human(self, text):

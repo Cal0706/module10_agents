@@ -5,10 +5,7 @@ from mock_model import MockModel
 
 def make_helper():
     """Build a fresh helper with its own tool for each test."""
-    book = AppointmentBook({
-        "monday": "9:00 am and 2:30 pm", 
-        "friday": "none"
-    })
+    book = AppointmentBook({"monday": "9:00 am and 2:30 pm", "friday": "none"})
     return AppointmentHelper("Robin", "Be clear.", book, MockModel())
 
 
@@ -41,6 +38,7 @@ def test_history_grows_by_two_each_turn():
     helper.respond("What is open on Friday?")
     assert len(helper.history) == 4
 
+
 class SilentModel:
     """A model that never has an answer. It stands in for Ollama being switched off."""
 
@@ -53,13 +51,17 @@ def make_helper():
     book = AppointmentBook({"monday": "9:00 am and 2:30 pm", "friday": "none"})
     return AppointmentHelper("Robin", "Be clear.", book, MockModel())
 
+
 def test_model_none_gets_safe_reply():
     book = AppointmentBook({"monday": "9:00 am and 2:30 pm"})
     helper = AppointmentHelper("Robin", "Be clear.", book, SilentModel())
 
     assert "try again" in helper.respond("What is your favorite color?")
 
+
 def test_other_messages_go_to_the_model():
     helper = make_helper()
-    assert helper.respond("hello") == "Hello! I'm Robin. Ask me which times are open on a day."
-
+    assert (
+        helper.respond("hello")
+        == "Hello! I'm Robin. Ask me which times are open on a day."
+    )

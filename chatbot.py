@@ -26,10 +26,9 @@ class SupportChatbot:
             return self.order_reply(user_message)
         if "stock" in text:
             return self.stock_reply(user_message)
-        
+
         return self.model_reply()
-        
-    
+
     def needs_human(self, text):
         """Return True if the messsage is about something a person must handle."""
         for word in HANDOFF_WORDS:
@@ -67,5 +66,3 @@ class SupportChatbot:
         if reply is None:
             return "Sorry, I can't answer that right now. Please try again in a moment."
         return reply
-    
-    

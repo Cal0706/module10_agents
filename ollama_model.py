@@ -22,4 +22,3 @@ class OllamaModel:
         except ResponseError:
             return None
         return response.message.content
-    

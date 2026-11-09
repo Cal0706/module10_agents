@@ -11,4 +11,3 @@ class MockModel:
         if "hello" in last_message:
             return "Hello! How can I help you today?"
         return "I'm not sure how to help with that. I can check an order or stock."
-    

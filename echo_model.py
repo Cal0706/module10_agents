@@ -9,5 +9,3 @@ class EchoModel:
         """Return the last message with a few words in front of it."""
         last_message = history[-1]["content"]
         return f"You said: {last_message}"
-
-    

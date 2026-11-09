@@ -3,6 +3,7 @@ from mock_model import MockModel
 from order_tool import OrderLookup
 from stock_tool import StockLookup
 
+
 def make_bot():
     """Build a fresh chatbot with its own tool for each test."""
     order_tool = OrderLookup({"A100": "shipped", "A101": "processing"})
@@ -66,11 +67,14 @@ def test_count_user_messages():
 def test_stock_question_uses_the_stock_tool():
     bot = make_bot()
     assert "12" in bot.respond("Is the rain jacket in stock?")
+
+
 from chatbot import SupportChatbot
 from echo_model import EchoModel
 from mock_model import MockModel
 from order_tool import OrderLookup
 from stock_tool import StockLookup
+
 
 class SilentModel:
     """A model that never has an answer. It stands in for Ollama being switched off."""
@@ -94,6 +98,7 @@ def make_bot_with_silent_model():
         "Sunny", "Be friendly.", order_tool, stock_tool, SilentModel()
     )
 
+
 def test_other_messages_go_to_the_model():
     bot = make_bot()
     assert bot.respond("hello") == "Hello! How can I help you today?"
@@ -113,10 +118,9 @@ def test_handoff_rule_does_not_need_the_model():
     bot = make_bot_with_silent_model()
     assert "human" in bot.respond("Please change my shipping address")
 
+
 def test_chatbot_works_with_any_model_that_has_a_reply_method():
     order_tool = OrderLookup({"A100": "shipped"})
     stock_tool = StockLookup({"rain jacket": 12})
     bot = SupportChatbot("Sunny", "Be friendly.", order_tool, stock_tool, EchoModel())
     assert bot.respond("good morning") == "You said: good morning"
-
-    
