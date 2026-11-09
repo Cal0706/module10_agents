@@ -1,4 +1,4 @@
-# my_tool.py
+# appointment_tool.py
 # Author: Cam Lopez
 
 
