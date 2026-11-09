@@ -2,11 +2,12 @@ HANDOFF_WORDS = ["address", "payment", "card"]
 
 
 class SupportChatbot:
-    def __init__(self, name, instructions, order_tool, stock_tool):
+    def __init__(self, name, instructions, order_tool, stock_tool, model=None):
         self.name = name
         self.instructions = instructions
         self.order_tool = order_tool
         self.stock_tool = stock_tool
+        self.model = model
         self.history = []
 
     def respond(self, user_message):
@@ -21,15 +22,15 @@ class SupportChatbot:
         text = user_message.lower()
         if self.needs_human(text):
             return "I cannot help with that here. I am passing you off to my human pet."
-
         if "order" in text:
             return self.order_reply(user_message)
         if "stock" in text:
             return self.stock_reply(user_message)
-        if "hello" in text:
+        if "hello" in text and self.model is None:
             return f"Hello! I am {self.name}. I can check an order status for you."
-        return "I am not sure how to help you with that. I can check an order status."
-
+        
+        return self.model_reply()
+    
     def needs_human(self, text):
         """Return True if the messsage is about something a person must handle."""
         for word in HANDOFF_WORDS:
@@ -60,3 +61,16 @@ class SupportChatbot:
             return "Which product? Please name the item you want me to check."
         count = self.stock_tool.count_for(product)
         return f"We have {count} of the {product} in stock."
+
+    def model_reply(self):
+        """Ask the model for a reply, with a safe fallback."""
+        if self.model is None:
+            return "Sorry, I can't answer that right now. Please try again."
+        
+        reply = self.model.reply(self.instructions, self.history)
+        
+        if reply is None:
+            return "Sorry, I can't answer that right now. Please try again."
+            
+        return reply
+    
