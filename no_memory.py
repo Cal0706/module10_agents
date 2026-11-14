@@ -1,5 +1,5 @@
 # no_memory.py
-# Author: [Your Name]
+# Author: Cam Lopez
 
 from ollama import chat
 

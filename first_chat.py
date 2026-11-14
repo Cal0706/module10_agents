@@ -1,5 +1,6 @@
 # first_chat.py
-# Author: [Your Name]
+# Author: Cam Lopez
+
 
 from ollama import chat
 
