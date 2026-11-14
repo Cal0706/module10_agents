@@ -45,5 +45,3 @@ class OrderLookup:
         if self.find_status(found) == "delivered":
             return f"Order {found} was delivered, so it can be returned within 30 days."
         return f"Order {found} has not been delivered, so it cannot be returned yet."
-
-

@@ -64,4 +64,3 @@ def test_cancellation_goes_to_the_front_desk():
 def test_keyword_model_still_greets():
     helper = make_helper(KeywordModel())
     assert helper.respond("hello") == "Hello! How can I help you today?"
-    

@@ -50,5 +50,3 @@ class OllamaModel:
             {"role": "assistant", "content": "", "tool_calls": [request]},
             {"role": "tool", "tool_name": name, "content": message["content"]},
         ]
-
-    

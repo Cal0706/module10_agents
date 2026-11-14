@@ -90,10 +90,9 @@ def test_unknown_order_containing_a_known_id_is_not_queued():
     assert "No order" in reply
     assert tools.change_queue.waiting() == []
 
+
 def test_only_delivered_orders_can_be_returned():
     tools = make_tools()
     tools.order_tool.orders["A101"]["status"] = "delivered"
     assert "can be returned" in tools.order_tool.check_return("A101")
     assert "cannot be returned yet" in tools.order_tool.check_return("A100")
-
-

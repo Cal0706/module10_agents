@@ -27,4 +27,3 @@ print(sunny.history[1]["content"])
 print(river.history[1]["content"])
 print(sunny.instructions)
 print(river.instructions)
-

@@ -15,5 +15,3 @@ class FakeModel:
         decision = self.decisions[self.calls]
         self.calls += 1
         return decision
-
-    

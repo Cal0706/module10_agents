@@ -20,4 +20,3 @@ class KeywordModel:
         return {
             "text": "I'm not sure how to help with that. I can check an order or stock."
         }
-    

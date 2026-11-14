@@ -21,6 +21,7 @@ class StockLookup:
         if product in self.stock:
             return self.stock[product]
         return None
+
     def check_stock(self, item):
         """Check how many of one product are in stock.
 
@@ -31,5 +32,3 @@ class StockLookup:
         if product is None:
             return "That product was not found."
         return f"We have {self.count_for(product)} of the {product} in stock."
-
-    

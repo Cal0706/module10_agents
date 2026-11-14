@@ -58,5 +58,3 @@ for request in change_queue.waiting():
 
 for order_id in ORDERS:
     print(order_id, ORDERS[order_id]["address"])
-11
-

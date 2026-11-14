@@ -47,4 +47,3 @@ for request in booking_queue.waiting():
         print(booking_queue.reject(number))
 
 print(f"Bookings: {len(appointment_book.bookings)}")
-

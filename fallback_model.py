@@ -16,5 +16,3 @@ class FallbackModel:
         if decision is None:
             return self.second.decide(instructions, history, tools)
         return decision
-
-    

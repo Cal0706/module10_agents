@@ -37,5 +37,3 @@ class AppointmentBook:
     def add_booking(self, day, time, client):
         """Record one booking. Only an approval calls this."""
         self.bookings.append({"day": day, "time": time, "client": client})
-
-

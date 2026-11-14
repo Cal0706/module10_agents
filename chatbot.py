@@ -67,4 +67,3 @@ class SupportChatbot:
             if message["role"] == "user":
                 count += 1
         return count
-    

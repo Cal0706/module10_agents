@@ -59,4 +59,3 @@ class AppointmentHelper:
             )
             rounds += 1
         return "Sorry, I couldn't finish that. I'm passing you to the front desk."
-    

@@ -160,6 +160,7 @@ def test_count_user_messages_skips_tool_entries():
     bot.respond("Where is order A100?")
     assert bot.count_user_messages() == 2
 
+
 def test_model_can_ask_about_a_return():
     model = FakeModel(
         [
@@ -171,11 +172,7 @@ def test_model_can_ask_about_a_return():
     bot.respond("Can I return order A100?")
     assert "cannot be returned yet" in bot.history[1]["content"]
 
+
 def test_lookups_keep_working_when_the_model_is_down():
     bot = make_bot(FallbackModel(SilentModel(), KeywordModel()))
     assert bot.respond("Where is order A100?") == "Order A100 is shipped."
-
-    
-
-
-    

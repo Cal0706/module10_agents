@@ -63,4 +63,3 @@ class Toolbox:
             if message["role"] == "user" and text.lower() in message["content"].lower():
                 return True
         return False
-    

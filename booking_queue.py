@@ -69,5 +69,3 @@ class BookingQueue:
             return f"Request {number} is already {request['status']}."
         request["status"] = "rejected"
         return f"Request {number} rejected."
-
-    
